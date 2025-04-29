@@ -72,6 +72,28 @@ header {
     position: relative;
 }
 
+.background-button {
+    background-color: #9B4819;
+    color: #F4F1E8;
+    padding: 10px 20px;
+    font-family: "CarlitoBold";
+    border-radius: 30px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    display: inline-block;
+    min-width: 130px; /* force same width */
+    height: 40px; /* force same height */
+    line-height: 20px; /* center text */
+    transition: background-color 0.3s ease;
+}
+
+.background-button:hover {
+    background-color: #803913; /* darken background on hover */
+}
+
 /* Regular navigation buttons */
 .header-button button:not(.background-button) {
     align-self: center;
