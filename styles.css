@@ -1,64 +1,121 @@
+/* Updated styles.css with responsiveness and enhancements */
+
 @font-face { font-family: Adlery; src: url('fonts/Adlery_TRIAL.ttf'); }
-
 @font-face { font-family: Cardo; src: url('fonts/Cardo-Regular.ttf'); }
-
 @font-face { font-family: CardoItalic; src: url('fonts/Cardo-Italic.ttf'); }
-
 @font-face { font-family: Radley; src: url('fonts/Radley-Regular.ttf'); }
-
 @font-face { font-family: RadleyItalic; src: url('fonts/Radley-Italic.ttf'); }
-
 @font-face { font-family: Carlito; src: url('fonts/Carlito-Regular.ttf'); }
-
 @font-face { font-family: CarlitoBold; src: url('fonts/Carlito-Bold.ttf'); }
 
-html{
-    scroll-behavior: smooth;
-}
-body{
-    background-color: #F4F1E8;
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-header{
-    z-index:100;
-    position: sticky; 
-    top: 0;  
-    background-color: #F4F1E8;
+:root {
+    --primary-color: #9B4819;
+    --bg-color: #F4F1E8;
+    --text-color: #333;
+    --accent-color: #BD8F53;
+    --dark-accent: #314028;
+    --transition-speed: 0.3s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Carlito', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+    z-index: 100;
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    transition: all var(--transition-speed) ease;
 }
 
-#header-rectangle{
+#header-rectangle {
     align-self: center;
     border-radius: 40px;
-    width: 700px;
-    height: 20px;
-    margin-top: 10px;
-    margin-right: 25px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 10px auto;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
+    padding: 0 20px;
 }
 
-.header-button{
+/* Base styling for all header buttons */
+.header-button {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
-header button{
+/* Regular navigation buttons */
+.header-button button:not(.background-button) {
     align-self: center;
     background: none;
-    border: none; 
+    border: none;
     margin: 10px;
     color: black;
     font-size: 15px;
     font-family: 'Carlito';
     cursor: pointer;
-    
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
 }
 
-.background-button{
+/* Remove the existing underline div elements in your HTML */
+.underline {
+    display: none;
+}
+
+/* New hover effect only for navigation buttons */
+.header-button button:not(.background-button):before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #9B4819;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.header-button button:not(.background-button):hover {
+    color: #9B4819;
+    transform: translateY(-2px);
+}
+
+.header-button button:not(.background-button):hover:before {
+    width: 100%;
+    left: 0;
+}
+
+/* Preserve your original style for the background buttons */
+/* No changes to these styles - this is just for reference */
+.background-button {
     background-color: #9B4819;
     color: #F4F1E8;
     padding: 10px;
@@ -66,248 +123,550 @@ header button{
     border-radius: 30px;
 }
 
-.underline{
-    display:none;
+/* Special styling for background buttons (Download CV and Contact Me) */
+.background-button {
+    background-color: #9B4819;
+    color: #F4F1E8 !important;
+    padding: 10px;
+    font-family: "CarlitoBold";
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+
+.background-button:hover {
+    background-color: #8A3E16;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(155, 72, 25, 0.2);
+}
+
+.underline {
+    display: none;
     margin-top: -20px;
     margin-left: auto;
 }
 
-.underline img{
-    height:7px;
+.underline img {
+    height: 7px;
     width: 50px;
-
 }
 
-.hovering:hover + .underline{
-    display: block; 
+.hovering:hover + .underline {
+    display: block;
 }
 
-.small-circle{
-    background-color: #9B4819;
+.small-circle {
+    background-color: var(--primary-color);
     border-radius: 50%;
     height: 5px;
-    width:5px;
+    width: 5px;
+    margin: 0 5px;
 }
 
-#header-line{
-    background-color: black;
-    width:auto;
-    margin-top: 20px;
+#header-line {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: 10px;
     height: 1px;
 }
 
-#AboutMe{
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* About Me Section */
+#AboutMe {
     display: flex;
     flex-direction: column;
-    padding: 50px 50px;
+    padding: 50px 20px;
+    align-items: center;
 }
-#hi{
+
+#hi {
     font-family: 'RadleyItalic';
-    font-weight:100;
-    font-size: 86px;
+    font-weight: 100;
+    font-size: 4.5rem;
     text-align: center;
-
+    margin-bottom: 10px;
 }
 
-#name{
+#name {
     font-family: "Radley";
     font-weight: 100;
-    font-size: 86px;
-    color: #9B4819;
+    color: var(--primary-color);
     text-align: center;
 }
 
-.name-text{
+.name-text {
     font-family: "Carlito";
     font-weight: 100;
-    margin-top: 20px;
-    padding: 0 300px;
+    margin: 20px auto;
+    max-width: 1000px;
+    padding: 0 20px;
     text-align: justify;
     text-justify: inter-word;
-    font-size: 23px;
+    font-size: 1.2rem;
+    line-height: 1.6;
 }
 
-#AboutMe img{
-    width: auto;
-    height: 175px;;
-    border-radius: 100%;
-    text-align: center;
-}
-
-#my-image{
+#my-image {
     text-align: center;
     position: relative;
-    top: 0;
-    left: 0;
+    width: 180px;
+    height: 180px;
+    margin-bottom: 30px;
 }
 
-.relative{
-    position: relative;
-    top: 0;
-    left: 0;
+#AboutMe img.relative {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
 }
 
-.absolute{
-    text-align: center;
+#AboutMe img.relative:hover {
+    transform: scale(1.05);
+}
+
+.absolute {
     position: absolute;
     left: 0;
     right: 0;
     margin: auto;
-    transform: translateY(-50%);
     transform: scale(1.5);
-}
-.bold{
-    font-weight: 500;
-}
-
-#Projects{
-    background-color: #9B4819;
+    opacity: 0.8;
+    z-index: -1;
 }
 
-#Projects h1{
+.bold {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Projects Section */
+#Projects {
+    background-color: var(--primary-color);
+    padding: 30px 0 70px;
+}
+
+#Projects h1 {
     text-align: center;
-    color:#F4F1E8;
+    color: var(--bg-color);
     font-family: "Radley";
-    font-size: 86px;
-    padding: 50px;
+    font-size: 3.5rem;
+    padding: 50px 20px;
+    margin: 0;
 }
 
-.project-rectangle{
-    padding: 40px 120px;
+.project-rectangle {
+    padding: 20px;
     text-align: center;
     display: flex;
     flex-wrap: wrap;
-    gap: 50px; 
-    justify-content: space-around;
+    gap: 40px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.my-icon{
-    background-color: pink;
+.my-icon {
     height: 250px;
     width: 250px;
     border-radius: 50%;
-    transition: 0.2s;
+    transition: all var(--transition-speed) ease;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.centered{
+.project-rectangle a {
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    transition: var(--transition-speed);
+    text-decoration: none;
+}
+
+.centered {
     user-select: none;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 200px;
+    opacity: 0;
+    transition: opacity var(--transition-speed) ease;
 }
 
-.project-rectangle a:hover .my-icon
-{
-    transition: 0.2s;
-        background-color: rgba(0, 0, 0, 0.5);
-    box-shadow: 5px 5px #a13e2c;
-    opacity: 0.1;
+.project-rectangle a:hover .my-icon {
+    transform: scale(1.05);
+    opacity: 0.2;
+    box-shadow: 5px 5px 15px rgba(161, 62, 44, 0.7);
 }
 
-.project-rectangle a{
-    color: transparent;
-    transition: 0.3s;
-}
-
-.project-rectangle :hover
-{
+.project-rectangle a:hover .centered {
+    opacity: 1;
     color: white;
-    transition: 0.3s;
 }
 
-.title{
+.title {
     font-family: "Radley";
     font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-family: "Carlito";
+    font-size: 20px;
     font-weight: 300;
 }
 
-.description{
-    font-family: "Carlito";
-    font-size: 20px;
-    font-weight: 100;
+/* Experience Section */
+#Experience {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px 50px;
 }
 
-#Experience h1{
+#Experience h1 {
     text-align: center;
-    color: #9B4819;
+    color: var(--primary-color);
     font-family: "Radley";
-    font-size: 86px;
+    font-size: 3.5rem;
     padding: 30px 20px;
     margin: 0;
 }
 
-.cv-title{
-    font-size: 40px;
+.cv {
+    padding-bottom: 30px;
+    max-width: 800px;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.cv:hover {
+    transform: translateY(-5px);
+}
+
+.cv-title {
+    font-family: "Radley";
+    font-size: 2rem;
     margin: 0;
     padding: 0;
+    color: var(--primary-color);
 }
 
-#Experience li{
-    font-size: 20px;
+#Experience li {
+    font-size: 1.1rem;
+    margin-left: 20px;
+    padding: 5px 0;
 }
 
-#Experience{
+#Experience h3 {
+    font-family: 'RadleyItalic';
+    font-size: 1.5rem;
+    margin: 5px 0 15px;
+    padding: 0;
+    color: var(--accent-color);
+}
+
+.button-center {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Education Section */
+#Education {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 50px;
-}
-.cv{
-    padding-bottom: 30px;
-    width: 800px;     
+    background-color: var(--primary-color);
+    padding: 30px 20px 50px;
 }
 
-#download-cv{
-    background-color: #9B4819;
-    padding: 20px;
-    color:#F4F1E8; 
-
-}
-
-.cv h3{
-    font-family: 'RadleyItalic';
-    font-size: 25px;
-    margin: 0;
-    padding: 0;
-}
-.button-center{
-    text-align: center;
-}
-
-#Education h1{
+#Education h1 {
     text-align: center;
     color: white;
     font-family: "Radley";
-    font-size: 86px;
+    font-size: 3.5rem;
     padding: 30px 20px;
     margin: 0;
 }
 
-#Education{
+#Education .cv {
+    color: white;
+}
+
+#Education li {
+    font-size: 1.1rem;
+    margin-left: 20px;
+    padding: 5px 0;
+}
+
+/* Contact Section */
+#ContactMe {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #9B4819;
+    padding: 50px 20px;
+    background-color: var(--bg-color);
+    position: relative;
 }
 
-#ContactMe h1{
-    color: black;
+#ContactMe h1 {
+    color: var(--primary-color);
     font-family: "RadleyItalic";
-    font-size: 40px;
-    padding: 30px 20px;
-    margin: 0;
+    font-size: 2.5rem;
+    margin: 0 0 20px;
 }
 
-#ContactMe h2{
+#ContactMe h2 {
     font-family: 'CardoItalic';
-    padding: 30px 20px;
+    padding: 15px 0;
     margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-color);
 }
 
-.contact-info{
+.contact {
+    text-align: center;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.contact:hover {
+    transform: translateY(-10px);
+}
+
+.contact-info {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Project Pages Specific Styles */
+.project-description {
+    font-family: 'Carlito';
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 0 20px 50px;
+    line-height: 1.6;
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 1.2rem;
+}
+
+.column {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.column .description {
+    padding: 30px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.column .description h1 {
+    text-align: center;
+    margin: 0 0 20px;
+    font-family: 'Radley';
+    color: white;
+    font-size: 2rem;
+}
+
+.column .description p {
+    font-family: 'Carlito';
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.5;
+    font-size: 1.1rem;
+}
+
+.back-button {
+    border: none;
+    background: var(--accent-color);
+    color: white;
+    margin: 20px;
+    padding: 8px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Carlito';
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #A17A46;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.end-note {
+    margin: 30px;
+    font-family: "Carlito";
+    font-size: 1rem;
+    color: #777;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+    .name-text {
+        padding: 0 100px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #hi, #name {
+        font-size: 4rem;
+    }
+
+    .name-text {
+        padding: 0 50px;
+        font-size: 1.1rem;
+    }
+
+    #Projects h1, #Experience h1, #Education h1 {
+        font-size: 3rem;
+    }
+
+    .cv {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #header-rectangle {
+        padding: 0 10px;
+    }
+
+    /* Show mobile menu toggle */
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    /* Hide navigation links on small screens by default */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: var(--bg-color);
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .small-circle {
+        display: none;
+    }
+
+    #hi, #name {
+        font-size: 3rem;
+    }
+
+    .name-text {
+        padding: 0 20px;
+        font-size: 1rem;
+    }
+
+    #Projects h1, #Experience h1, #Education h1 {
+        font-size: 2.5rem;
+        padding: 30px 10px;
+    }
+
+    .cv-title {
+        font-size: 1.5rem;
+    }
+
+    #Experience h3 {
+        font-size: 1.2rem;
+    }
+
+    #Experience li, #Education li {
+        font-size: 1rem;
+    }
+
+    /* Project pages columns */
+    .column {
+        flex-direction: column;
+    }
+
+    .column .description, .column .image {
+        width: 100%;
+    }
+
+    .column .image img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #hi, #name {
+        font-size: 2.5rem;
+    }
+
+    #Projects h1, #Experience h1, #Education h1 {
+        font-size: 2rem;
+    }
+
+    #AboutMe {
+        padding: 30px 10px;
+    }
+
+    .contact h1 {
+        font-size: 2rem;
+    }
+
+    .contact h2 {
+        font-size: 1.2rem;
+    }
+
+    .project-rectangle {
+        gap: 20px;
+    }
+
+    .my-icon {
+        height: 200px;
+        width: 200px;
+    }
 }
