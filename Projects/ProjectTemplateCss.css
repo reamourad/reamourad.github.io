@@ -1,0 +1,263 @@
+@font-face { font-family: Adlery; src: url('/Users/rea/repos/cv/fonts/Adlery_TRIAL.ttf'); }
+
+@font-face { font-family: Cardo; src: url('/Users/rea/repos/cv/fonts/Cardo-Regular.ttf'); }
+
+@font-face { font-family: CardoItalic; src: url('/Users/rea/repos/cv/fonts/Cardo-Italic.ttf'); }
+
+@font-face { font-family: Radley; src: url('/Users/rea/repos/cv/fonts/Radley-Regular.ttf'); }
+
+@font-face { font-family: RadleyItalic; src: url('/Users/rea/repos/cv/fonts/Radley-Italic.ttf'); }
+
+@font-face { font-family: Carlito; src: url('/Users/rea/repos/CV/fonts/Carlito-Regular.ttf'); }
+
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Project Page Specific Styles */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #F4F1E8;
+}
+
+/* Header styles */
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-size: 20px;
+}
+
+header p {
+    font-family: 'Carlito';
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-family: 'Radley';
+    color: #9B4819;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+/* Skills box */
+.skills-box {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    margin: 30px auto;
+}
+
+.skill {
+    background-color: #9B4819;
+    color: white;
+    font-family: 'Carlito';
+    text-align: center;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+main {
+    flex-direction: column;
+}
+
+/* Project description */
+.project-description {
+    font-family: 'Carlito';
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 0 20px 50px;
+    line-height: 1.6;
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 20px;
+}
+
+/* Column Styles */
+.column {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100vw; /* Full viewport width */
+    margin: 0;
+    align-items: stretch;
+}
+
+.column .description,
+.column .image {
+    width: 50%; /* Ensure each takes exactly half the screen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.column .description {
+    background: #333333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.column .description .center {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.column .description h1 {
+    text-align: center;
+    margin: 0 0 20px;
+    font-family: 'Radley', serif;
+    color: white;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.column .description p {
+    font-family: 'Carlito';
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.5;
+    font-size: 1.2rem;
+    padding: 0 25px; /* Horizontal padding */
+    box-sizing: border-box;
+}
+
+
+.column .image {
+    overflow: hidden;
+}
+
+.column .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; /* Removes any whitespace below images */
+}
+
+/* End notes */
+.end-note {
+    margin: 30px;
+    font-family: "Carlito";
+    font-size: 20px;
+}
+
+/* Back button */
+.back-button {
+    border: none;
+    background: none;
+    color: white;
+    margin: 20px 0px -50px 20px;
+    background-color: #BD8F53;
+    width: 150px;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Carlito';
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #A17A46;
+    transform: translateY(-3px);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 992px) {
+    .skills-box {
+        width: 80%;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .project-description {
+        font-size: 18px;
+        padding: 0 30px 40px;
+    }
+
+    .column .description h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .column {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .column .description,
+    .column .image {
+        width: 100%;
+        flex: 0 0 auto;
+    }
+
+    .column .image {
+        order: -1; /* Always show image first on mobile */
+    }
+
+    .column + .column {
+        margin-top: 30px; /* Add vertical padding between stacked columns */
+    }
+
+    .column .description .center {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .column .description h1 {
+        text-align: center;
+        margin: 30px 0 10px;
+        font-family: 'RadleyItalic', 'Radley', serif;
+        color: white;
+        font-size: 2rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .column .description p {
+        font-family: 'Carlito';
+        text-align: justify;
+        text-justify: inter-word;
+        line-height: 1.5;
+        font-size: 1.2rem;
+        padding: 0 25px 10px 25px; /* Horizontal padding */
+        box-sizing: border-box;
+    }
+
+    .skills-box {
+        width: 90%;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .project-description {
+        font-size: 16px;
+        padding: 0 20px 30px;
+    }
+}
